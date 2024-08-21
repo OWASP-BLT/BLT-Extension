@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<head>
+    <title>Report</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+
+    .main-wrapper{
+        width: 360px;
+        height: 500px;
+        border: #f2eeee;
+    }
+
+    .logo-wrapper{
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    div img{
+        margin-left: 30px;
+    }
+
+    .header-button-wrapper{
+        width: 100%;
+        height: 30px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap:10px;
+    }
+
+    .button-wrapper {
+        background-color: #f2eeee;
+        height: 38px;
+        padding: 8px 20px; 
+        white-space: nowrap; 
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #000000;
+        line-height: 21px; 
+        cursor: pointer;
+        border-radius: 12px; 
+        letter-spacing: 0.05em;
+        text-align: center;
+    }
+
+    .button-wrapper:hover {
+        background-color: #dc2626;
+        color: #ffffff;
+        text-decoration: none;
+        box-shadow: #9d9b9b;
+    }
+
+    .report-wrapper{
+        display: grid;
+
+    }
+
+</style>
+<body>
+    <div class="main-wrapper">
+        <div class="logo-wrapper">
+            <img src="img/BLT_TRANSPARENT.png" width="200px" height="70px">
+        </div>
+        <div class="header-button-wrapper">
+            <div class="button-wrapper">
+                Report
+            </div>
+            <div class="button-wrapper">
+                Domain
+            </div>
+        </div>
+        <div class="report-wrapper">
+            <div>
+                <h3>REPORT AN ISSUE</h3>
+            </div>
+            <div class="bug-type-wrapper">
+                <div>
+                    <label for="url"
+                           class="">
+                            DOMAIN URL
+                    </label>
+                    <div class="">
+                        <input id="url"
+                               type="text"
+                               name="url"
+                               value=""
+                               autocomplete="domain_name"
+                               placeholder="https://blt.owasp.org/search"
+                               required
+                               data-intro="Enter the website's complete url where you found the bug."
+                               data-step="1"
+                               class="" />
+                    </div>
+                </div>
+                <label for="label"
+                       class="bug-type-label">
+                        BUG TYPE
+                </label>
+                <div class="bug-type-box-wrapper">
+                    <select name="label"
+                            id="labelSelect"
+                            required
+                            data-intro="Categorize the bug."
+                            data-step="3"
+                            >
+                        <option value="0" selected="selected">General</option>
+                        <option value="1">Number error</option>
+                        <option value="2">Functional</option>
+                        <option value="3">Performance</option>
+                        <option value="4">Security</option>
+                        <option value="5">Typo</option>
+                        <option value="6">Design</option>
+                        <option value="7">Server down</option>
+                    </select>
+                </div>
+            </div>
+            <div class="">
+                <label for="description"
+                        class="">
+                    BUG TITLE
+                </label>
+                <div class="">
+                    <input type="text"
+                            name="description"
+                            value=""
+                            id="description"
+                            autocomplete="domain_url"
+                            placeholder="Xss Vulnerability in bug editor"
+                            required
+                            data-intro="Enter Bug report title"
+                            data-step="1"
+                            class="" />
+                </div>
+            </div>
+            <div>
+                <h3>Upload Image</h3>
+                <form id="upload-form">
+                    <input type="file" id="image-upload" accept="image/*" />
+                    <button type="submit">Upload</button>
+                </form>
+            </div>
+            <div class="">
+                <input type="text"
+                       name="description"
+                       value=""
+                       id="description"
+                       autocomplete="domain_url"
+                       placeholder="Xss Vulnerability in bug editor"
+                       required
+                       data-intro="Enter Bug report title"
+                       data-step="1"
+                       class="block w-full placeholder:text-xl rounded-md border-0 py-5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  sm:leading-6" />
+            </div>
+            <div class="">
+                <button type="button"
+                        onclick="cancelForm()"
+                        class="">Cancel</button>
+                <button type="submit"
+                        name="reportbug_button"
+                        class="">
+                    Report
+                </button>
+            </div>
+        </div>
+        <div class="domain-wrapper">
+            <div class="">
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("upload-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const imageInput = document.getElementById("image-upload");
+            const file = imageInput.files[0];
+
+            if (file) {
+                const formData = new FormData();
+                formData.append("image", file);
+
+                // Send the image to your backend API
+                fetch("", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Image uploaded successfully:", data);
+                })
+                .catch(error => {
+                    console.error("Error uploading image:", error);
+                });
+            } else {
+                console.log("No file selected.");
+            }
+        });
+    </script>
+</body>
+</html>

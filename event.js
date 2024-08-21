@@ -17,8 +17,10 @@ function n() {
   g.version = b && b.join(".");
   g.versionInt = parseInt(g.version);
   return g;
+};
+if (typeof window !== 'undefined') {
+  window._gaq = window._gaq || [];
 }
-;window._gaq = window._gaq || [];
 var q = {L:function(a) {
   return a + Math.random();
 }, ca:function(a) {
@@ -398,14 +400,23 @@ function Y(a, b) {
 ;var D = "upload_screenshot", X = "upload_started", O = "upload_progress", S = "upload_success", U = "upload_failed", A = "open_screenshot_link", C = "copy_screenshot_link", B = "cancel_upload", R = "search_google";
 var Q = function(a) {
   (function() {
-    window._gaq.push(["_setAccount", a]);
-    window._gaq.push(["_trackPageview"]);
-    var b = document.createElement("script");
+    if (typeof window !== "undefined") {
+      window._gaq.push(["_setAccount", a]);
+      window._gaq.push(["_trackPageview"]);  
+    }
+
+    if (typeof document !== "undefined") {
+      var b = document.createElement("script");
+      var g = document.getElementsByTagName("script")[0];
+  }
+  if (b){
     b.type = "text/javascript";
     b.async = !0;
     b.src = "https://ssl.google-analytics.com/ga.js";
-    var g = document.getElementsByTagName("script")[0];
+  }
+  if (g){
     g.parentNode.insertBefore(b, g);
+  }
   })();
   return{e:function(a, g, k, l, t) {
     window._gaq.push(["_trackEvent", a, g, k, l, t]);
@@ -526,12 +537,20 @@ var Q = function(a) {
   return{U:function() {
     h = new W;
     e = x();
-    chrome.browserAction.onClicked.addListener(t);
+    chrome.action.onClicked.addListener(t);
     chrome.runtime.onMessage.addListener(b);
-    document.addEventListener("copy", a);
+    if (typeof document !== "undefined") {
+      document.addEventListener("copy", a);
+  }
     var c = chrome.runtime.getManifest().version;
-    "undefined" === typeof localStorage.lightshot_version ? localStorage.ever_updated = "no" : localStorage.lightshot_version != c && (localStorage.ever_updated = "yes");
-    localStorage.lightshot_version = c;
+    if (typeof localStorage !== "undefined") {
+      if (typeof localStorage.lightshot_version === "undefined") {
+          localStorage.ever_updated = "no";
+          localStorage.lightshot_version = c;
+      } else if (localStorage.lightshot_version !== c) {
+          localStorage.ever_updated = "yes";
+      }
+  }
   }, sendMessage:function(a) {
     if (a && "undefined" !== typeof a && "undefined" !== typeof a.name) {
       switch(a.name) {
