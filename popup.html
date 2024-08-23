@@ -1,110 +1,162 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        /* Main container styling */
+        .main-wrapper {
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-family: Arial, sans-serif; 
+        }
+ 
+        /* Logo container */
+        .logo-wrapper {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+ 
+        /* Header button container */
+        .header-button-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+ 
+        /* Button styles */
+        .button-wrapper {
+            background-color: #ff7e7e;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+ 
+        .button-wrapper.active {
+            background-color: #dc2626;
+        }
+ 
+        .button-wrapper:hover {
+            background-color: #e03a3a;
+        }
+ 
+        /* Report container */
+        .report-wrapper {
+            text-align: left;
+        }
+ 
+        .report-wrapper h3 {
+            color: #b51e1e;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+ 
+        /* Input and description alignment */
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+ 
+        /* Input fields styling */
+        .inp {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 48%;
+        }
+ 
+        .inp input,
+        .inp select,
+        .inp textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+ 
+        /* Description textarea styling */
+        .des {
+            width: 48%;
+ 
+        }
+ 
+        .des textarea,
+        .des input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            height: 250px;
+        }
+ 
+        /* Button styling */
+        button[type="submit"],
+        button[type="button"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff7e7e;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+ 
+        button[type="submit"]:hover,
+        button[type="button"]:hover {
+            background-color: #dc2626;
+        }
+ 
+        button[type="button"].cancel {
+            background-color: #ccc;
+            color: #333;
+        }
+ 
+        button[type="button"].cancel:hover {
+            background-color: #b3b3b3;
+        }
+    </style>
 </head>
-<style>
-
-    .main-wrapper{
-        width: 360px;
-        height: 500px;
-        border: #f2eeee;
-    }
-
-    .logo-wrapper{
-        padding: 10px;
-        display: flex;
-        justify-content: center;
-    }
-
-    div img{
-        margin-left: 30px;
-    }
-
-    .header-button-wrapper{
-        width: 100%;
-        height: 30px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        gap:10px;
-    }
-
-    .button-wrapper {
-        background-color: #f2eeee;
-        height: 38px;
-        padding: 8px 20px; 
-        white-space: nowrap; 
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #000000;
-        line-height: 21px; 
-        cursor: pointer;
-        border-radius: 12px; 
-        letter-spacing: 0.05em;
-        text-align: center;
-    }
-
-    .button-wrapper:hover {
-        background-color: #dc2626;
-        color: #ffffff;
-        text-decoration: none;
-        box-shadow: #9d9b9b;
-    }
-
-    .report-wrapper{
-        display: grid;
-
-    }
-
-</style>
 <body>
     <div class="main-wrapper">
         <div class="logo-wrapper">
-            <img src="img/BLT_TRANSPARENT.png" width="200px" height="70px">
+            <img src="img/BLT_TRANSPARENT.png" alt="Logo" width="200px" height="70px">
         </div>
         <div class="header-button-wrapper">
-            <div class="button-wrapper">
-                Report
-            </div>
-            <div class="button-wrapper">
-                Domain
-            </div>
+            <button class="button-wrapper">Report</button>
+            <button class="button-wrapper">Domain</button>
         </div>
         <div class="report-wrapper">
-            <div>
-                <h3>REPORT AN ISSUE</h3>
-            </div>
-            <div class="bug-type-wrapper">
-                <div>
-                    <label for="url"
-                           class="">
-                            DOMAIN URL
-                    </label>
-                    <div class="">
-                        <input id="url"
-                               type="text"
-                               name="url"
-                               value=""
-                               autocomplete="domain_name"
-                               placeholder="https://blt.owasp.org/search"
-                               required
-                               data-intro="Enter the website's complete url where you found the bug."
-                               data-step="1"
-                               class="" />
-                    </div>
-                </div>
-                <label for="label"
-                       class="bug-type-label">
-                        BUG TYPE
-                </label>
-                <div class="bug-type-box-wrapper">
-                    <select name="label"
-                            id="labelSelect"
-                            required
-                            data-intro="Categorize the bug."
-                            data-step="3"
-                            >
+            <h3>REPORT AN ISSUE</h3>
+            <div class="form-container">
+                <div class="inp">
+                    <label for="url">DOMAIN URL</label>
+                    <input id="url" type="text" name="url" placeholder="https://blt.owasp.org/search" required>
+ 
+                    <label for="labelSelect">BUG TYPE</label>
+                    <select name="label" id="labelSelect" required>
                         <option value="0" selected="selected">General</option>
                         <option value="1">Number error</option>
                         <option value="2">Functional</option>
@@ -114,76 +166,38 @@
                         <option value="6">Design</option>
                         <option value="7">Server down</option>
                     </select>
+                    <label for="bugTitle">BUG TITLE</label>
+                    <input type="text" id="bugTitle" name="bugTitle" placeholder="Xss Vulnerability in bug editor" required>
+ 
+ 
+                    <h3>Upload Image</h3>
+                    <form id="upload-form">
+                        <input type="file" id="image-upload" accept="image/*">
+                        <button type="submit">Upload</button>
+                    </form>
+                </div>
+                <div class="des">
+ 
+                    <label for="description">DESCRIPTION</label>
+                    <textarea id="description" name="description" placeholder="Description of the Bug" required></textarea>
                 </div>
             </div>
-            <div class="">
-                <label for="description"
-                        class="">
-                    BUG TITLE
-                </label>
-                <div class="">
-                    <input type="text"
-                            name="description"
-                            value=""
-                            id="description"
-                            autocomplete="domain_url"
-                            placeholder="Xss Vulnerability in bug editor"
-                            required
-                            data-intro="Enter Bug report title"
-                            data-step="1"
-                            class="" />
-                </div>
-            </div>
-            <div>
-                <h3>Upload Image</h3>
-                <form id="upload-form">
-                    <input type="file" id="image-upload" accept="image/*" />
-                    <button type="submit">Upload</button>
-                </form>
-            </div>
-            <div class="">
-                <input type="text"
-                       name="description"
-                       value=""
-                       id="description"
-                       autocomplete="domain_url"
-                       placeholder="Xss Vulnerability in bug editor"
-                       required
-                       data-intro="Enter Bug report title"
-                       data-step="1"
-                       class="block w-full placeholder:text-xl rounded-md border-0 py-5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  sm:leading-6" />
-            </div>
-            <div class="">
-                <button type="button"
-                        onclick="cancelForm()"
-                        class="">Cancel</button>
-                <button type="submit"
-                        name="reportbug_button"
-                        class="">
-                    Report
-                </button>
-            </div>
-        </div>
-        <div class="domain-wrapper">
-            <div class="">
-
-            </div>
-
+            <button type="button" class="cancel" onclick="cancelForm()">Cancel</button>
+            <button type="submit" name="reportbug_button">Report</button>
         </div>
     </div>
-
+ 
     <script>
         document.getElementById("upload-form").addEventListener("submit", function(event) {
             event.preventDefault();
-
+ 
             const imageInput = document.getElementById("image-upload");
             const file = imageInput.files[0];
-
+ 
             if (file) {
                 const formData = new FormData();
                 formData.append("image", file);
-
-                // Send the image to your backend API
+ 
                 fetch("", {
                     method: "POST",
                     body: formData
@@ -199,6 +213,10 @@
                 console.log("No file selected.");
             }
         });
+ 
+        function cancelForm() {
+            // Implement form cancel logic here
+        }
     </script>
 </body>
 </html>
