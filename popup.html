@@ -53,6 +53,7 @@
  
         /* Report container */
         .report-wrapper {
+            display: block;
             text-align: left;
         }
  
@@ -137,6 +138,49 @@
         button[type="button"].cancel:hover {
             background-color: #b3b3b3;
         }
+
+        .domain-wrapper{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .section-title {
+            align-items: center;
+        }
+        
+        .bug-item{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            background-color: #e8e4e4;
+            border: black;
+            padding: 20px;
+            border-radius: 40px;
+            margin: 10px;
+        }
+
+        .bug-desc{
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .bug-tags{
+            text-align: center;
+        }
+
+        .bug-tag{
+            background-color: aquamarine;
+            border-radius: 40px;
+            padding: 5px;
+        }
+
+        .bug-type{
+            background-color: rgb(31, 154, 211);
+            border-radius: 40px;
+            padding: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -145,8 +189,8 @@
             <img src="img/BLT_TRANSPARENT.png" alt="Logo" width="200px" height="70px">
         </div>
         <div class="header-button-wrapper">
-            <button class="button-wrapper">Report</button>
-            <button class="button-wrapper">Domain</button>
+            <button class="button-wrapper" id="report-button">Report</button>
+            <button class="button-wrapper" id="domain-button">Domain</button>
         </div>
         <div class="report-wrapper">
             <h3>REPORT AN ISSUE</h3>
@@ -177,7 +221,6 @@
                     </form>
                 </div>
                 <div class="des">
- 
                     <label for="description">DESCRIPTION</label>
                     <textarea id="description" name="description" placeholder="Description of the Bug" required></textarea>
                 </div>
@@ -185,38 +228,23 @@
             <button type="button" class="cancel" onclick="cancelForm()">Cancel</button>
             <button type="submit" name="reportbug_button">Report</button>
         </div>
+        <div class="domain-wrapper">
+            <h2 class="section-title">BUGS</h2>
+            <p class="domain-info">on blt.owasp.org</p>
+            <div class="bug-list">
+                <div class="bug-item">
+                    <div class="bug-info">
+                        <p class="bug-desc">Bug found 404 and missing information. Longer Desc. No image. Attached pictures. Bug Type Tag and many more to come</p>
+                    </div>
+                    <div class="bug-tags">
+                        <span class="bug-tag">Open</span>
+                        <span class="bug-type">Type</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
- 
-    <script>
-        document.getElementById("upload-form").addEventListener("submit", function(event) {
-            event.preventDefault();
- 
-            const imageInput = document.getElementById("image-upload");
-            const file = imageInput.files[0];
- 
-            if (file) {
-                const formData = new FormData();
-                formData.append("image", file);
- 
-                fetch("", {
-                    method: "POST",
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Image uploaded successfully:", data);
-                })
-                .catch(error => {
-                    console.error("Error uploading image:", error);
-                });
-            } else {
-                console.log("No file selected.");
-            }
-        });
- 
-        function cancelForm() {
-            // Implement form cancel logic here
-        }
-    </script>
+    <script src="event.js"></script>
+
 </body>
 </html>
