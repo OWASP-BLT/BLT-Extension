@@ -1,59 +1,61 @@
-document.getElementById("upload-form").addEventListener("submit", function(event) {
-  event.preventDefault();
+// document.getElementById("upload-form").addEventListener("submit", function(event) {
+//     event.preventDefault();
+//     const formData = new FormData();
+//     formData.append("url", document.getElementById("url").value);
+//     formData.append("description", document.getElementById("bugTitle").value);
+//     formData.append("label" , document.getElementById("labelSelect").value );
+//     formData.append("Markdown description" , document.getElementById("description").value);
+//     formData.append("screenshots" , document.getElementById("image-upload").files[0]);
 
-  const imageInput = document.getElementById("image-upload");
-  const file = imageInput.files[0];
 
-  if (file) {
-      const formData = new FormData();
-      formData.append("image", file);
+//     fetch("http://localhost:8000/api/v1/issues/", {
+//         method: "POST",
+//         body: FormData
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log("Issue created successfully:", data);
+//         alert("Issue reported successfully!");
+//     })
+//     .catch(error => {
+//         console.error("Error creating issue:", error);
+//         alert("Error submitting the issue. Please try again.");
+//     });
 
-      fetch("", {
-          method: "POST",
-          body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log("Image uploaded successfully:", data);
-      })
-      .catch(error => {
-          console.error("Error uploading image:", error);
-      });
-  } else {
-      console.log("No file selected.");
-  }
-});
+// });
 
 function cancelForm() {
-  // Implement form cancel logic here
+    // Clear the form
+    document.getElementById("upload-form").reset();
+    alert("Form has been cleared.");
 }
 
 document.getElementById("report-button").addEventListener("click", function() {
-  const reportWrappers = document.getElementsByClassName("report-wrapper");
-  const domainWrappers = document.getElementsByClassName("domain-wrapper");
+    const reportWrappers = document.getElementsByClassName("report-wrapper");
+    const domainWrappers = document.getElementsByClassName("domain-wrapper");
 
-  if (reportWrappers.length > 0 && domainWrappers.length > 0) {
-      reportWrappers[0].style.display = "block"; // Display the report section
-      domainWrappers[0].style.display = "none";  // Hide the domain section
-  } else {
-      console.error("Elements with the specified class names not found");
-  }
+    if (reportWrappers.length > 0 && domainWrappers.length > 0) {
+        reportWrappers[0].style.display = "block";  // Show the report section
+        domainWrappers[0].style.display = "none";   // Hide the domain section
+    } else {
+        console.error("Elements with the specified class names not found");
+    }
 
-  this.classList.add("active");
-  document.getElementById("domain-button").classList.remove("active");
+    this.classList.add("active");
+    document.getElementById("domain-button").classList.remove("active");
 });
 
 document.getElementById("domain-button").addEventListener("click", function() {
-  const reportWrappers = document.getElementsByClassName("report-wrapper");
-  const domainWrappers = document.getElementsByClassName("domain-wrapper");
+    const reportWrappers = document.getElementsByClassName("report-wrapper");
+    const domainWrappers = document.getElementsByClassName("domain-wrapper");
 
-  if (reportWrappers.length > 0 && domainWrappers.length > 0) {
-      reportWrappers[0].style.display = "none";  // Hide the report section
-      domainWrappers[0].style.display = "block"; // Display the domain section
-  } else {
-      console.error("Elements with the specified class names not found");
-  }
+    if (reportWrappers.length > 0 && domainWrappers.length > 0) {
+        reportWrappers[0].style.display = "none";   // Hide the report section
+        domainWrappers[0].style.display = "block";  // Show the domain section
+    } else {
+        console.error("Elements with the specified class names not found");
+    }
 
-  this.classList.add("active");
-  document.getElementById("report-button").classList.remove("active");
+    this.classList.add("active");
+    document.getElementById("report-button").classList.remove("active");
 });

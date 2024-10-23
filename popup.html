@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -72,6 +71,8 @@
             max-width: 100%;
             margin: 0 auto;
             padding: 20px 0;
+            flex-direction: column;
+            align-items: center;
         }
  
         /* Input fields styling */
@@ -79,24 +80,16 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            width: 48%;
         }
  
         .inp input,
         .inp select,
         .inp textarea {
-            width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 14px;
             margin-bottom: 15px;
-        }
- 
-        /* Description textarea styling */
-        .des {
-            width: 48%;
- 
         }
  
         .des textarea,
@@ -184,66 +177,71 @@
     </style>
 </head>
 <body>
-    <div class="main-wrapper">
-        <div class="logo-wrapper">
-            <img src="img/BLT_TRANSPARENT.png" alt="Logo" width="200px" height="70px">
-        </div>
-        <div class="header-button-wrapper">
-            <button class="button-wrapper" id="report-button">Report</button>
-            <button class="button-wrapper" id="domain-button">Domain</button>
-        </div>
-        <div class="report-wrapper" >
-            <h3>REPORT AN ISSUE</h3>
-            <div class="form-container">
-                <div class="inp">
-                    <label for="url">DOMAIN URL</label>
-                    <input id="url" type="text" name="url" placeholder="https://blt.owasp.org/search" required>
- 
-                    <label for="labelSelect">BUG TYPE</label>
-                    <select name="label" id="labelSelect" required>
-                        <option value="0" selected="selected">General</option>
-                        <option value="1">Number error</option>
-                        <option value="2">Functional</option>
-                        <option value="3">Performance</option>
-                        <option value="4">Security</option>
-                        <option value="5">Typo</option>
-                        <option value="6">Design</option>
-                        <option value="7">Server down</option>
-                    </select>
-                    <label for="bugTitle">BUG TITLE</label>
-                    <input type="text" id="bugTitle" name="bugTitle" placeholder="Xss Vulnerability in bug editor" required>
- 
- 
-                    <h3>Upload Image</h3>
-                    <form id="upload-form">
-                        <input type="file" id="image-upload" accept="image/*">
-                        <button type="submit">Upload</button>
-                    </form>
-                </div>
-                <div class="des">
-                    <label for="description">DESCRIPTION</label>
-                    <textarea id="description" name="description" placeholder="Description of the Bug" required></textarea>
-                </div>
+    <form
+        action="http://localhost:8000/api/v1/issues/"
+        method='POST'
+        enctype="multipart/form-data"
+        id="upload-form">
+        <div class="main-wrapper">
+            <div class="logo-wrapper">
+                <img src="img/BLT_TRANSPARENT.png" alt="Logo" width="200px" height="70px">
             </div>
-            <button type="button" class="cancel" onclick="cancelForm()">Cancel</button>
-            <button type="submit" name="reportbug_button">Report</button>
+            <div class="header-button-wrapper">
+                <button class="button-wrapper" id="report-button">Report</button>
+                <button class="button-wrapper" id="domain-button">Domain</button>
+            </div>
+            <div class="report-wrapper" >
+                <h3>REPORT AN ISSUE</h3>
+                <div class="form-container">
+                    <div class="inp">
+                        <label for="url">DOMAIN URL</label>
+                        <input id="url" type="text" name="url" placeholder="https://blt.owasp.org/search" required>
+    
+                        <label for="labelSelect">BUG TYPE</label>
+                        <select name="label" id="labelSelect" required>
+                            <option value="0" selected="selected">General</option>
+                            <option value="1">Number error</option>
+                            <option value="2">Functional</option>
+                            <option value="3">Performance</option>
+                            <option value="4">Security</option>
+                            <option value="5">Typo</option>
+                            <option value="6">Design</option>
+                            <option value="7">Server down</option>
+                        </select>
+                        <label for="bugTitle">BUG TITLE</label>
+                        <input type="text" id="bugTitle" name="bugTitle" placeholder="Xss Vulnerability in bug editor" required>
+                    </div>
+                    <div class="des">
+                        <label for="description">DESCRIPTION</label>
+                        <textarea id="description" name="description" placeholder="Description of the Bug" required></textarea>
+                    </div>
+                    <div class="">
+                        <label for="screenshots">IMAGE</label>
+                        <input type="file" name="screenshots" id="image-upload" accept="image/*">
+                    </div>
+                </div>
+                <button type="button" class="cancel" onclick="cancelForm()">Cancel</button>
+                <button type="submit" id="reportbug_button">Report</button>
+            </div>
         </div>
-        <div class="domain-wrapper">
-            <h2 class="section-title">BUGS</h2>
-            <p class="domain-info">on blt.owasp.org</p>
-            <div class="bug-list">
-                <div class="bug-item">
-                    <div class="bug-info">
-                        <p class="bug-desc">Bug found 404 and missing information. Longer Desc. No image. Attached pictures. Bug Type Tag and many more to come</p>
-                    </div>
-                    <div class="bug-tags">
-                        <span class="bug-tag">Open</span>
-                        <span class="bug-type">Type</span>
-                    </div>
+    </form>
+
+    <div class="domain-wrapper">
+        <h2 class="section-title">BUGS</h2>
+        <p class="domain-info">on blt.owasp.org</p>
+        <div class="bug-list">
+            <div class="bug-item">
+                <div class="bug-info">
+                    <p class="bug-desc">Bug found 404 and missing information. Longer Desc. No image. Attached pictures. Bug Type Tag and many more to come</p>
+                </div>
+                <div class="bug-tags">
+                    <span class="bug-tag">Open</span>
+                    <span class="bug-type">Type</span>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="event.js"></script>
 
 </body>
