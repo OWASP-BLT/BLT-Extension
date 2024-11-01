@@ -21,7 +21,8 @@
       "chrome-extension",
       "owasp",
       "blt",
-      "security"
+      "security",
+      "tabCapture"
    ],
    "license": "MIT"
 }
