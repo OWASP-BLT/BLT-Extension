@@ -19,9 +19,12 @@ function aa(a) {
             fontFamily: c.css("fontFamily"),
             lineHeight: c.css("lineHeight")
         });
-        var b = a.value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/$/, "&nbsp;").replace(/\n/g,
-                "&nbsp;<br/>").replace(/\s/g, "&nbsp;"),
-            e = b.split("<br/>").length - 1;
+        var b = a.value
+        .replace(/&/g, "&amp;")  
+        .replace(/</g, "&lt;")   
+        .replace(/>/g, "&gt;")   
+        .replace(/ /g, "&nbsp;"),  
+        e = b.split("<br/>").length - 1;
         d.html(b);
         c.css({
             width: d.width() + f + "px"
