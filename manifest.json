@@ -42,6 +42,10 @@
       {
          "matches": ["*://*.wellfound.com/jobs*"],
          "js": ["wellfound-monitor.js"]
+      },
+      {
+         "matches": ["*://*.github.com/*"],
+         "js": ["github-rate-limit.js"]
       }
    ]
 }
