@@ -12,6 +12,7 @@ if (!fs.existsSync(distDir)) {
 const includePaths = [
   'manifest.json',
   '_locales',
+  'background.js',
   'content.js',
   'event.js',
   'img',

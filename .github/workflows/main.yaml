@@ -5,23 +5,26 @@ on:
 
 jobs:
   build:
-    name: Publish webextension
+    name: Build webextension
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 12
+          node-version: '18'
 
-      # Zip the entire repository
-      - name: Zip repository
-        run: zip -r extension.zip .
+      - name: Build extension package
+        run: npm run build
 
-      # Upload the zip file as a build artifact
-      - uses: actions/upload-artifact@v2
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
         with:
           name: webextension
-          path: extension.zip
+          path: dist/extension.zip
 
-        

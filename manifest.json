@@ -1,10 +1,9 @@
 {
    "author": "OWASP BLT",
    "background": {
-      "persistent": false,
-      "scripts": [ "libs/jquery-1.11.1.min.js", "event.js" ]
+      "service_worker": "background.js"
    },
-   "browser_action": {
+   "action": {
       "default_icon": {
          "19": "img/icon19.png",
          "38": "img/icon38.png"
@@ -12,7 +11,6 @@
       "default_title": "OWASP BLT-Extension",
       "default_popup": "popup.html"
    },
-   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
    "default_locale": "en",
    "description": "OWASP BLT let's you get points for testing and finding issues!",
    "homepage_url": "https://www.owasp.org/BLT/",
@@ -24,15 +22,16 @@
       "32": "img/icon32.png",
       "38": "img/icon38.png"
    },
-   "manifest_version": 2,
+   "manifest_version": 3,
    "name": "OWASP BLT-Extension",
    "short_name": "BLT-Extension",
-   "permissions": [ "\u003Call_urls>", "activeTab", "storage", "unlimitedStorage", "notifications", "clipboardWrite", "downloads", "tabCapture" ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.4",
+   "permissions": [ "activeTab", "storage", "notifications", "clipboardWrite", "downloads", "tabCapture" ],
+   "host_permissions": [ "<all_urls>" ],
    "web_accessible_resources": [
-      "jobtracking.html",
-      "jobtracking.js"
+      {
+         "resources": [ "jobtracking.html", "jobtracking.js", "screenshot.html" ],
+         "matches": [ "<all_urls>" ]
+      }
    ],
    "content_scripts": [
       {

@@ -478,7 +478,7 @@ var Q = function(a) {
                 global_url = tabs[0].url;
                 // Open screenshot editor in new tab
                 chrome.tabs.create({
-                    url: chrome.extension.getURL("screenshot.html?id=" + b)
+                    url: chrome.runtime.getURL("screenshot.html?id=" + b)
                 }, function(a) {
                     if ("function" == typeof chrome.tabs.Y) {
                         try {
